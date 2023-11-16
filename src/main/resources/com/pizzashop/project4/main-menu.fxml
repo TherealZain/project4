@@ -1,16 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.MainMenuController">
+<AnchorPane prefHeight="591.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.MainMenuController">
    <children>
-      <BorderPane layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+      <BorderPane layoutY="77.0" prefHeight="515.0" prefWidth="841.0">
          <center>
-            <Button mnemonicParsing="false" onAction="#displayBuildOwn" text="Go to Build Own" BorderPane.alignment="CENTER" />
+            <GridPane alignment="CENTER" prefHeight="527.0" prefWidth="841.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints />
+                  <RowConstraints maxHeight="294.0" minHeight="10.0" prefHeight="226.4539794921875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="195.5460205078125" minHeight="10.0" prefHeight="195.5460205078125" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displayBuildOwn" prefHeight="180.0" prefWidth="300.0" text="Build Your Own" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displayCurrentOrder" prefHeight="180.0" prefWidth="300.0" text="Current Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <graphic>
+                        <ImageView fx:id="displayCurrentOrder" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displaySpecialtyPizzas" prefHeight="180.0" prefWidth="300.0" text="Specialty Pizzas" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displayStoreOrders" prefHeight="180.0" prefWidth="300.0" text="Store Orders" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                     <graphic>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </GridPane>
          </center>
       </BorderPane>
+      <VBox layoutX="-6.0" layoutY="-1.0" prefHeight="111.0" prefWidth="842.0">
+         <children>
+            <TextField alignment="CENTER" prefHeight="102.0" prefWidth="842.0" text="RU PIZZA">
+               <font>
+                  <Font size="41.0" />
+               </font>
+            </TextField>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
