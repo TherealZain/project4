@@ -1,7 +1,7 @@
 package com.pizzashop.project4;
 
 public class StoreOrdersController {
-    MainMenuController mainController;
+    private MainMenuController mainController;
     public void setMainController(MainMenuController controller) {
         mainController = controller;
     }

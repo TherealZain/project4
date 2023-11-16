@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainMenuController{
-    Stage currentOrder = new Stage();
-    Stage specialtyPizza = new Stage();
 
     @FXML
     protected void displayBuildOwn() {
