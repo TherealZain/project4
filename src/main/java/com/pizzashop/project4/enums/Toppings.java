@@ -1,6 +1,6 @@
-package com.pizzashop.project4;
+package com.pizzashop.project4.enums;
 
-public enum Topping {
+public enum Toppings {
     SAUSAGE, PEPPERONI, GREEN_PEPPER,
     ONION, MUSHROOM, HAM, BLACK_OLIVE,
     BEEF, SHRIMP, SQUID, CRAB_MEAT,

@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.BuildOwnController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0" />
+      <BorderPane layoutY="3.0" prefHeight="391.0" prefWidth="600.0">
+         <left>
+            <VBox prefHeight="391.0" prefWidth="146.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="24.0" prefWidth="148.0" text="Toppings" />
+                  <ListView fx:id="toppingsList" prefHeight="283.0" prefWidth="116.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <HBox prefHeight="391.0" prefWidth="231.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="391.0" prefWidth="137.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Size">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <MenuButton mnemonicParsing="false" text="Size">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                            <MenuItem mnemonicParsing="false" text="Action 2" />
+                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                          </items>
+                        </MenuButton>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="103.0" text="Extra cheese">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Extra sauce" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </center></BorderPane>
    </children>
 </AnchorPane>
