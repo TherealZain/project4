@@ -6,52 +6,65 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.BuildOwnController">
+<AnchorPane prefHeight="332.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.BuildOwnController">
    <children>
-      <BorderPane layoutY="3.0" prefHeight="391.0" prefWidth="600.0">
+      <BorderPane layoutY="3.0" prefHeight="345.0" prefWidth="494.0">
          <left>
-            <VBox prefHeight="391.0" prefWidth="146.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="345.0" prefWidth="161.0" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="CENTER" prefHeight="24.0" prefWidth="148.0" text="Toppings" />
-                  <ListView fx:id="toppingsList" prefHeight="283.0" prefWidth="116.0" />
+                  <ListView fx:id="toppingsList" prefHeight="283.0" prefWidth="116.0">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </ListView>
                </children>
             </VBox>
          </left>
          <center>
             <HBox prefHeight="391.0" prefWidth="231.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="CENTER" prefHeight="391.0" prefWidth="137.0">
+                  <VBox alignment="CENTER" prefHeight="345.0" prefWidth="130.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Size">
                            <VBox.margin>
-                              <Insets bottom="10.0" />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <MenuButton mnemonicParsing="false" text="Size">
+                        <MenuButton fx:id="sizeSelect" mnemonicParsing="false" text="Size">
                           <items>
                             <MenuItem mnemonicParsing="false" text="Action 1" />
                             <MenuItem mnemonicParsing="false" text="Action 2" />
                               <MenuItem mnemonicParsing="false" text="Unspecified Action" />
                           </items>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
                         </MenuButton>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="103.0" text="Extra cheese">
+                        <RadioButton fx:id="extraCheese" mnemonicParsing="false" prefHeight="18.0" prefWidth="103.0" text="Extra cheese">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </RadioButton>
-                        <RadioButton mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Extra sauce" />
+                        <RadioButton fx:id="extraSauce" mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Extra sauce" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Price" />
+                        <TextArea fx:id="priceDisplay" editable="false" prefHeight="23.0" prefWidth="100.0" />
                      </children>
                   </VBox>
                </children>
+               <BorderPane.margin>
+                  <Insets right="5.0" />
+               </BorderPane.margin>
             </HBox>
          </center></BorderPane>
    </children>
