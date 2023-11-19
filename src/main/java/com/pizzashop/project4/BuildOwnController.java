@@ -1,5 +1,7 @@
 package com.pizzashop.project4;
 
+import com.pizzashop.project4.enums.Sauce;
+import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
 import com.pizzashop.project4.pizzas.Pizza;
 import javafx.collections.FXCollections;
@@ -7,11 +9,21 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.RadioButton;
 
 public class BuildOwnController {
     @FXML
-    private ListView<String> toppingsList;
-   // private MultipleSelectionModel<String> selectionModel = toppingsList.getSelectionModel();
+    private ListView<String> additionalToppingsList;
+    @FXML
+    private ListView<String> selectedToppingsList;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button removeButton;
+    @FXML
+    private ToggleGroup sauceToggleGroup;
+    // private MultipleSelectionModel<String> selectionModel = toppingsList.getSelectionModel();
     @FXML
     private MenuButton sizeSelect;
     @FXML
@@ -21,7 +33,7 @@ public class BuildOwnController {
     @FXML
     private MainMenuController mainController;
     @FXML
-    private TextArea priceDisplay;
+    private TextField priceDisplay;
     private Pizza buildYourOwn = PizzaMaker.createPizza("BYO");
 
     public void setMainController(MainMenuController controller) {
@@ -29,34 +41,97 @@ public class BuildOwnController {
     }
 
     public void initialize() {
-        // Create and populate the list with items
-        toppingsList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        String price = String.valueOf(buildYourOwn.price());
+        String price = String.format("%.2f", buildYourOwn.price());
         priceDisplay.setText(price);
 
-        ObservableList<String> items = FXCollections.observableArrayList();
+        ObservableList<String> additionalItems = FXCollections.observableArrayList();
         for (Toppings value : Toppings.values()) {
-            items.add(value.name());
+            additionalItems.add(capitalize(value.name().toLowerCase().replace('_', ' ')));
         }
-        toppingsList.setItems(items);
+        additionalToppingsList.setItems(additionalItems);
+        selectedToppingsList.setItems(FXCollections.observableArrayList());
 
+        extraCheese.setOnAction(event -> handlePriceChange());
+        extraSauce.setOnAction(event -> handlePriceChange());
+
+        sauceToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                RadioButton selectedRadioButton = (RadioButton) newValue;
+                String selectedSauce = selectedRadioButton.getText();
+
+                if ("Tomato Sauce".equals(selectedSauce)) {
+                    buildYourOwn.setSauce(Sauce.TOMATO);
+                } else if ("Alfredo Sauce".equals(selectedSauce)) {
+                    buildYourOwn.setSauce(Sauce.ALFREDO);
+                }
+
+                handlePriceChange();
+            }
+        });
+
+        for (MenuItem item : sizeSelect.getItems()) {
+            item.setOnAction(event -> {
+                sizeSelect.setText(item.getText());
+                handleSizeChange(Size.valueOf(item.getText().toUpperCase()));
+            });
+        }
+
+        addButton.setOnAction(event -> handleAddTopping());
+        removeButton.setOnAction(event -> handleRemoveTopping());
+    }
+
+    private String capitalize(String input) {
+        char[] chars = input.toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other characters here if needed
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
 
-    public void handleToppings() {
-        ObservableList<String> selectedItems = toppingsList.getSelectionModel().getSelectedItems();
 
-        selectedItems.addListener((ListChangeListener<String>) change -> {
-            while (change.next()) {
-                if (change.wasAdded() || change.wasRemoved()) {
-                    handlePriceChange();
-                }
-            }
-        });
+    @FXML
+    private void handleAddTopping() {
+        String selected = additionalToppingsList.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            additionalToppingsList.getItems().remove(selected);
+            selectedToppingsList.getItems().add(selected);
+            handlePriceChange();
+        }
+    }
+
+    @FXML
+    private void handleRemoveTopping() {
+        String selected = selectedToppingsList.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            selectedToppingsList.getItems().remove(selected);
+            additionalToppingsList.getItems().add(selected);
+            handlePriceChange();
+        }
     }
 
     private void handlePriceChange() {
-        String price = String.valueOf(buildYourOwn.price());
-        priceDisplay.setText(price);
+        double price = buildYourOwn.price();
+
+        if (extraCheese.isSelected()) {
+            price += 1.0;
+        }
+
+        if (extraSauce.isSelected()) {
+            price += 1.0;
+        }
+        priceDisplay.setText(String.format("%.2f", price));
     }
+
+    private void handleSizeChange(Size newSize) {
+        buildYourOwn.setSize(newSize);
+        handlePriceChange();
+    }
+
 }

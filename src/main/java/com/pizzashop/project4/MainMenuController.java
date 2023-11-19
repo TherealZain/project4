@@ -16,16 +16,17 @@ public class MainMenuController{
     protected void displayBuildOwn() {
         Stage buildOwn = new Stage();
         AnchorPane root;
-        buildOwn.setTitle("Build Your Own");
+        buildOwn.setTitle("Customize Your Pizza");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("build-own.fxml"));
             root = (AnchorPane) loader.load();
-            Scene scene = new Scene(root, 500, 400);
+            Scene scene = new Scene(root, 500, 600);
             buildOwn.setScene(scene);
             buildOwn.show();
             BuildOwnController buildOwnController = loader.getController();
             buildOwnController.setMainController(this);
         } catch (IOException e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading build-own.fxml.");

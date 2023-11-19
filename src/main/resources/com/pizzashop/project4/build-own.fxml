@@ -1,72 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ToggleGroup?>
 
-<?import javafx.scene.control.CheckBox?>
-<AnchorPane prefHeight="332.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.BuildOwnController">
+<?import javafx.scene.control.RadioButton?>
+<AnchorPane prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.BuildOwnController">
    <children>
-      <BorderPane layoutY="3.0" prefHeight="345.0" prefWidth="494.0">
-         <left>
-            <VBox prefHeight="345.0" prefWidth="161.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" fillWidth="true" prefWidth="500.0" spacing="25">
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER" spacing="50" VBox.vgrow="NEVER">
                <children>
-                  <Label alignment="CENTER" prefHeight="24.0" prefWidth="148.0" text="Toppings" />
-                  <ListView fx:id="toppingsList" prefHeight="283.0" prefWidth="116.0">
-                     <VBox.margin>
-                        <Insets left="5.0" />
-                     </VBox.margin>
-                  </ListView>
-               </children>
-            </VBox>
-         </left>
-         <center>
-            <HBox prefHeight="391.0" prefWidth="231.0" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="345.0" prefWidth="130.0">
+                  <!-- BYO Pizza Image -->
+                  <ImageView fx:id="byoPizzaImage" fitHeight="150.0" fitWidth="150.0" preserveRatio="true">
+                     <image>
+                        <Image url="@images/byo_pizza.png" />
+                     </image>
+                  </ImageView>
+                  <!-- Selection Elements (Size, Extra Cheese, Extra Sauce) -->
+                  <VBox spacing="5">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Size">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <MenuButton fx:id="sizeSelect" mnemonicParsing="false" text="Size">
-                          <items>
-                            <MenuItem mnemonicParsing="false" text="Small" />
-                            <MenuItem mnemonicParsing="false" text="Medium" />
-                              <MenuItem mnemonicParsing="false" text="Large" />
-                          </items>
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
+                        <Label text="Pizza Size" />
+                        <MenuButton fx:id="sizeSelect" minWidth="120" text="Small">
+                           <items>
+                              <MenuItem text="Small" />
+                              <MenuItem text="Medium" />
+                              <MenuItem text="Large" />
+                           </items>
                         </MenuButton>
-                        <CheckBox fx:id="extraCheese" mnemonicParsing="false" prefHeight="18.0" prefWidth="103.0" text="Extra cheese">
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                        </CheckBox>
-                        <CheckBox fx:id="extraSauce" mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Extra sauce" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="Price" />
-                        <TextArea fx:id="priceDisplay" editable="false" prefHeight="23.0" prefWidth="100.0" />
+                        <HBox spacing="10">
+                           <children>
+                              <RadioButton fx:id="tomatoSauce" mnemonicParsing="false" prefHeight="8.0" prefWidth="110.0" text="Tomato Sauce">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="20.0" top="10.0" />
+                                 </VBox.margin>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="sauceToggleGroup" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="alfredoSauce" mnemonicParsing="false" text="Alfredo Sauce" toggleGroup="$sauceToggleGroup">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="20.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="extraCheese" text="Extra Cheese" />
+                        <CheckBox fx:id="extraSauce" text="Extra Sauce" />
                      </children>
                   </VBox>
                </children>
-               <BorderPane.margin>
-                  <Insets right="5.0" />
-               </BorderPane.margin>
             </HBox>
-         </center></BorderPane>
+            <HBox alignment="CENTER" spacing="10" VBox.vgrow="NEVER">
+               <children>
+                  <!-- Additional Toppings -->
+                  <VBox>
+                     <Label text="Additional Toppings" />
+                     <ListView fx:id="additionalToppingsList" prefHeight="200" prefWidth="150" VBox.vgrow="ALWAYS" />
+                  </VBox>
+                  <!-- VBox for Add/Remove buttons -->
+                  <VBox alignment="CENTER" spacing="10">
+                     <children>
+                        <Button fx:id="addButton" minWidth="70" text="Add Topping" />
+                        <Button fx:id="removeButton" minWidth="70" text="Remove Topping" />
+                     </children>
+                  </VBox>
+                  <!-- Selected Toppings -->
+                  <VBox>
+                     <Label text="Selected Toppings" />
+                     <ListView fx:id="selectedToppingsList" prefHeight="200" prefWidth="150" VBox.vgrow="ALWAYS" />
+                  </VBox>
+               </children>
+            </HBox>
+            <!-- Price -->
+            <HBox alignment="CENTER" spacing="10">
+               <children>
+                  <HBox alignment="CENTER" spacing="10">
+                     <children>
+                        <Label text="Price: $" />
+                        <TextField fx:id="priceDisplay" editable="false" prefWidth="100" minWidth="50" />
+                        <Button fx:id="addToOrderButton" minWidth="70" text="Add to Order" prefWidth="100"/>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
