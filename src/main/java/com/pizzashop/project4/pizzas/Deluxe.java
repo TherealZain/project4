@@ -12,7 +12,7 @@ public class Deluxe extends Pizza{
         sauce = Sauce.TOMATO;
         toppings.add(Toppings.SAUSAGE);
         toppings.add(Toppings.PEPPERONI);
-        toppings.add(Toppings.GREEN_PEPPER);
+        toppings.add(Toppings.GREENPEPPER);
         toppings.add(Toppings.ONION);
         toppings.add(Toppings.MUSHROOM);
     }
@@ -26,5 +26,15 @@ public class Deluxe extends Pizza{
             return price + Size.LARGE.getPriceAdd();
         }
         return price;
+    }
+
+    @Override
+    public void addToppings(Toppings topping) {
+
+    }
+
+    @Override
+    public void removeToppings(Toppings topping) {
+
     }
 }

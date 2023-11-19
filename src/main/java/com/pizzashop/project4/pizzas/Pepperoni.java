@@ -23,4 +23,14 @@ public class Pepperoni extends Pizza{
         }
         return price;
     }
+
+    @Override
+    public void addToppings(Toppings topping) {
+
+    }
+
+    @Override
+    public void removeToppings(Toppings topping) {
+
+    }
 }

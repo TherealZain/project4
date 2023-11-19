@@ -15,6 +15,9 @@ public abstract class Pizza {
 
     public abstract double price(); //polymorphism
 
+    public abstract void addToppings(Toppings topping);
+    public abstract void removeToppings(Toppings topping);
+
     public void setSize(Size newSize) {
     }
     public void setSauce(Sauce newSauce) {

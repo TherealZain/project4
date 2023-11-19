@@ -7,8 +7,8 @@ import com.pizzashop.project4.enums.Toppings;
 import java.util.ArrayList;
 
 public class BuildYourOwn extends Pizza{
-    private static final int MAX_TOPPINGS = 7;
-    private ArrayList<Toppings> toppings = new ArrayList<>();
+    private static final int MAX_TOPPINGS = 3;
+    private ArrayList<Toppings> toppings;
     private static final double EXTRA_TOPPING_COST = 1.49;
     public BuildYourOwn() {
         this.toppings = new ArrayList<>();
@@ -33,10 +33,12 @@ public class BuildYourOwn extends Pizza{
         return price;
     }
 
+    @Override
     public void addToppings(Toppings topping){
         toppings.add(topping);
     }
 
+    @Override
     public void removeToppings(Toppings topping){
 
         toppings.remove(topping);

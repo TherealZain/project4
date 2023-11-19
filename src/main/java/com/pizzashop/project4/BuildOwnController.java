@@ -35,6 +35,7 @@ public class BuildOwnController {
     @FXML
     private TextField priceDisplay;
     private Pizza buildYourOwn = PizzaMaker.createPizza("BYO");
+    private static final int MAX_TOPPINGS = 7;
 
     public void setMainController(MainMenuController controller) {
         mainController = controller;
@@ -99,9 +100,19 @@ public class BuildOwnController {
     @FXML
     private void handleAddTopping() {
         String selected = additionalToppingsList.getSelectionModel().getSelectedItem();
-        if (selected != null) {
+        if(selectedToppingsList.getItems().size() == MAX_TOPPINGS){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Cannot add more toppings");
+            alert.setContentText("Maximum of 7 toppings");
+            alert.showAndWait();
+        }
+        else if (selected != null) {
             additionalToppingsList.getItems().remove(selected);
             selectedToppingsList.getItems().add(selected);
+            String enumString = selected.replace(" ", "").toUpperCase();
+            Toppings topping = Toppings.valueOf(enumString);
+            buildYourOwn.addToppings(topping);
             handlePriceChange();
         }
     }
@@ -112,13 +123,15 @@ public class BuildOwnController {
         if (selected != null) {
             selectedToppingsList.getItems().remove(selected);
             additionalToppingsList.getItems().add(selected);
+            String enumString = selected.replace(" ", "").toUpperCase();
+            Toppings topping = Toppings.valueOf(enumString);
+            buildYourOwn.removeToppings(topping);
             handlePriceChange();
         }
     }
 
     private void handlePriceChange() {
         double price = buildYourOwn.price();
-
         if (extraCheese.isSelected()) {
             price += 1.0;
         }
@@ -126,6 +139,8 @@ public class BuildOwnController {
         if (extraSauce.isSelected()) {
             price += 1.0;
         }
+
+
         priceDisplay.setText(String.format("%.2f", price));
     }
 
