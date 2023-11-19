@@ -15,9 +15,9 @@ public class BuildOwnController {
     @FXML
     private MenuButton sizeSelect;
     @FXML
-    private RadioButton extraCheese;
+    private CheckBox extraCheese;
     @FXML
-    private RadioButton extraSauce;
+    private CheckBox extraSauce;
     @FXML
     private MainMenuController mainController;
     @FXML
