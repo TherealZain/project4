@@ -13,6 +13,11 @@ public class BuildYourOwn extends Pizza{
     public BuildYourOwn() {
         this.toppings = new ArrayList<>();
     }
+
+    public void setSize(Size size) {
+        this.size = size; // Assuming 'size' is a field in the Pizza class
+    }
+
     @Override
     public double price() {
         double price = Size.SMALL.getPriceAdd();
