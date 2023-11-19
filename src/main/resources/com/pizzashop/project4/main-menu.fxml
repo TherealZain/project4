@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="591.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.MainMenuController">
    <children>
       <BorderPane layoutY="77.0" prefHeight="515.0" prefWidth="841.0">
@@ -30,7 +31,11 @@
                <children>
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displayBuildOwn" prefHeight="180.0" prefWidth="300.0" text="Build Your Own" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@byo_pizza.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                      <GridPane.margin>
                         <Insets />
@@ -41,15 +46,23 @@
                   </Button>
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displayCurrentOrder" prefHeight="180.0" prefWidth="300.0" text="Current Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <graphic>
-                        <ImageView fx:id="displayCurrentOrder" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                     </graphic>
+                        <ImageView fx:id="displayCurrentOrder" fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@current_order.png" />
+                           </image>
+                        </ImageView>
+                  </graphic>
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displaySpecialtyPizzas" prefHeight="180.0" prefWidth="300.0" text="Specialty Pizzas" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@specialty_pizzas.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                      <font>
                         <Font size="20.0" />
@@ -57,7 +70,11 @@
                   </Button>
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#displayStoreOrders" prefHeight="180.0" prefWidth="300.0" text="Store Orders" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@store_orders.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
                      <font>
                         <Font size="20.0" />

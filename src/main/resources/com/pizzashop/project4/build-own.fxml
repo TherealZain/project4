@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.CheckBox?>
 <AnchorPane prefHeight="332.0" prefWidth="437.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pizzashop.project4.BuildOwnController">
    <children>
       <BorderPane layoutY="3.0" prefHeight="345.0" prefWidth="494.0">
@@ -39,20 +40,20 @@
                         </Label>
                         <MenuButton fx:id="sizeSelect" mnemonicParsing="false" text="Size">
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Action 1" />
-                            <MenuItem mnemonicParsing="false" text="Action 2" />
-                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                            <MenuItem mnemonicParsing="false" text="Small" />
+                            <MenuItem mnemonicParsing="false" text="Medium" />
+                              <MenuItem mnemonicParsing="false" text="Large" />
                           </items>
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </MenuButton>
-                        <RadioButton fx:id="extraCheese" mnemonicParsing="false" prefHeight="18.0" prefWidth="103.0" text="Extra cheese">
+                        <CheckBox fx:id="extraCheese" mnemonicParsing="false" prefHeight="18.0" prefWidth="103.0" text="Extra cheese">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
-                        </RadioButton>
-                        <RadioButton fx:id="extraSauce" mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Extra sauce" />
+                        </CheckBox>
+                        <CheckBox fx:id="extraSauce" mnemonicParsing="false" prefHeight="18.0" prefWidth="99.0" text="Extra sauce" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
