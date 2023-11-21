@@ -7,8 +7,14 @@ public class StoreOrders {
     private static int nextOrderNum;
 
     public StoreOrders(){
-        nextOrderNum = 0;
+        nextOrderNum = 1;
         storeOrders = new ArrayList<>();
+    }
+
+    public int getNextOrderNum(){
+        int currOrderNum = nextOrderNum;
+        nextOrderNum++;
+        return currOrderNum;
     }
 
 }

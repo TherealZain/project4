@@ -12,4 +12,8 @@ public class Order {
         this.orderNum = orderNum;
         pizzaOrders = new ArrayList<>();
     }
+
+    public void addToOrder(Pizza pizza){
+        pizzaOrders.add(pizza);
+    }
 }

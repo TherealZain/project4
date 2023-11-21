@@ -11,7 +11,7 @@ public class Seafood extends Pizza{
         sauce = Sauce.ALFREDO;
         toppings.add(Toppings.SHRIMP);
         toppings.add(Toppings.SQUID);
-        toppings.add(Toppings.CRAB_MEAT);
+        toppings.add(Toppings.CRABMEAT);
     }
 
     @Override

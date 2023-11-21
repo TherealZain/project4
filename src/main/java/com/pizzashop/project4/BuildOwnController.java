@@ -14,22 +14,25 @@ import javafx.scene.control.RadioButton;
 
 public class BuildOwnController {
     @FXML
-    private ListView<String> additionalToppingsList;
+    private ListView<String> additionalToppingsList, selectedToppingsList;
     @FXML
-    private ListView<String> selectedToppingsList;
+    private Button addButton, removeButton;
     @FXML
-    private Button addButton;
-    @FXML
-    private Button removeButton;
+    private RadioButton tomatoSauce, alfredoSauce;
     @FXML
     private ToggleGroup sauceToggleGroup;
-    // private MultipleSelectionModel<String> selectionModel = toppingsList.getSelectionModel();
     @FXML
     private MenuButton sizeSelect;
     @FXML
-    private CheckBox extraCheese;
+    private MenuItem smallItem;
     @FXML
-    private CheckBox extraSauce;
+    private MenuItem mediumItem;
+    @FXML
+    private MenuItem largeItem;
+    @FXML
+    private MenuItem selectedItem;
+    @FXML
+    private CheckBox extraCheese, extraSauce;
     @FXML
     private MainMenuController mainController;
     @FXML
@@ -44,7 +47,9 @@ public class BuildOwnController {
     public void initialize() {
         String price = String.format("%.2f", buildYourOwn.price());
         priceDisplay.setText(price);
-
+        smallItem.setOnAction(event -> handleMenuItemSelect(smallItem));
+        mediumItem.setOnAction(event -> handleMenuItemSelect(mediumItem));
+        largeItem.setOnAction(event -> handleMenuItemSelect(largeItem));
         ObservableList<String> additionalItems = FXCollections.observableArrayList();
         for (Toppings value : Toppings.values()) {
             additionalItems.add(capitalize(value.name().toLowerCase().replace('_', ' ')));
@@ -69,16 +74,19 @@ public class BuildOwnController {
                 handlePriceChange();
             }
         });
-
         for (MenuItem item : sizeSelect.getItems()) {
             item.setOnAction(event -> {
                 sizeSelect.setText(item.getText());
                 handleSizeChange(Size.valueOf(item.getText().toUpperCase()));
             });
         }
-
         addButton.setOnAction(event -> handleAddTopping());
         removeButton.setOnAction(event -> handleRemoveTopping());
+    }
+
+    private void handleMenuItemSelect(MenuItem menuItem) {
+        selectedItem = menuItem;
+        sizeSelect.setText(menuItem.getText());
     }
 
     private String capitalize(String input) {
@@ -135,13 +143,35 @@ public class BuildOwnController {
         if (extraCheese.isSelected()) {
             price += 1.0;
         }
-
         if (extraSauce.isSelected()) {
             price += 1.0;
         }
-
-
         priceDisplay.setText(String.format("%.2f", price));
+    }
+
+    private void emptySelectedToppings(){
+        ObservableList<String> itemsToMove = FXCollections.observableArrayList(selectedToppingsList.getItems());
+        for (String item : itemsToMove) {
+            selectedToppingsList.getItems().remove(item);
+            additionalToppingsList.getItems().add(item);
+        }
+    }
+
+    @FXML
+    private void handleAddToOrder(){
+        mainController.addPizza(buildYourOwn);
+        buildYourOwn = PizzaMaker.createPizza("BYO");
+        sauceToggleGroup.selectToggle(tomatoSauce);
+        extraCheese.setSelected(false);
+        extraSauce.setSelected(false);
+        sizeSelect.setText(smallItem.getText());
+        emptySelectedToppings();
+        handlePriceChange();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Order added to Cart");
+        alert.setContentText("Order successfully added");
+        alert.showAndWait();
     }
 
     private void handleSizeChange(Size newSize) {

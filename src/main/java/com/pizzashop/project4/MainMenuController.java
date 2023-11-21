@@ -9,9 +9,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class MainMenuController{
+    private StoreOrders storeOrders = new StoreOrders();
 
+    private Order order = new Order(storeOrders.getNextOrderNum());
     @FXML
     protected void displayBuildOwn() {
         Stage buildOwn = new Stage();
@@ -99,6 +103,14 @@ public class MainMenuController{
             alert.setContentText("Couldn't load build-own.fxml.");
             alert.showAndWait();
         }
+    }
+
+    public void createNewOrder(){
+        order = new Order(storeOrders.getNextOrderNum());
+    }
+
+    public void addPizza(Pizza pizza){
+        order.addToOrder(pizza);
     }
 
 
