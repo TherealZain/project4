@@ -25,13 +25,11 @@
          <children>
             <HBox alignment="CENTER" spacing="50" VBox.vgrow="NEVER">
                <children>
-                  <!-- BYO Pizza Image -->
                   <ImageView fx:id="byoPizzaImage" fitHeight="150.0" fitWidth="150.0" preserveRatio="true">
                      <image>
                         <Image url="@images/byo_pizza.png" />
                      </image>
                   </ImageView>
-                  <!-- Selection Elements (Size, Extra Cheese, Extra Sauce) -->
                   <VBox spacing="5">
                      <children>
                         <Label text="Pizza Size" />
@@ -67,26 +65,22 @@
             </HBox>
             <HBox alignment="CENTER" spacing="10" VBox.vgrow="NEVER">
                <children>
-                  <!-- Additional Toppings -->
                   <VBox>
                      <Label text="Additional Toppings" />
                      <ListView fx:id="additionalToppingsList" prefHeight="200" prefWidth="150" VBox.vgrow="ALWAYS" />
                   </VBox>
-                  <!-- VBox for Add/Remove buttons -->
                   <VBox alignment="CENTER" spacing="10">
                      <children>
                         <Button fx:id="addButton" minWidth="70" text="Add Topping" />
                         <Button fx:id="removeButton" minWidth="70" text="Remove Topping" />
                      </children>
                   </VBox>
-                  <!-- Selected Toppings -->
                   <VBox>
                      <Label text="Selected Toppings" />
                      <ListView fx:id="selectedToppingsList" prefHeight="200" prefWidth="150" VBox.vgrow="ALWAYS" />
                   </VBox>
                </children>
             </HBox>
-            <!-- Price -->
             <HBox alignment="CENTER" spacing="10">
                <children>
                   <HBox alignment="CENTER" spacing="10">
