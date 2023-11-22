@@ -16,4 +16,7 @@ public class Order {
     public void addToOrder(Pizza pizza){
         pizzaOrders.add(pizza);
     }
+
+    public int getOrderNum(){return orderNum;}
+    public ArrayList<Pizza> getPizzas(){return pizzaOrders;}
 }

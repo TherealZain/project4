@@ -12,6 +12,8 @@ public class BuildYourOwn extends Pizza{
     private static final double EXTRA_TOPPING_COST = 1.49;
     public BuildYourOwn() {
         this.toppings = new ArrayList<>();
+        extraCheese = false;
+        extraSauce = false;
     }
 
     public void setSize(Size size) {
@@ -42,6 +44,29 @@ public class BuildYourOwn extends Pizza{
     public void removeToppings(Toppings topping){
 
         toppings.remove(topping);
+    }
+
+    @Override
+    public void setSauce(Sauce sauce){
+        this.sauce = sauce;
+    }
+
+    @Override
+    public String toString(){
+        String pizzaType= "[Build Your Own] ";
+        String toppingsString = toppings.toString().toLowerCase();
+        String priceName = " " + Double.toString(price());
+        String extraCheeseString = "";
+        String extraSauceString = "";
+        if(extraCheese){
+            extraCheeseString= " extra cheese";
+        }
+        if(extraSauce){
+            extraSauceString = " extra sauce";
+        }
+        return pizzaType + toppingsString + extraCheeseString
+                + extraSauceString + priceName;
+
     }
 }
 

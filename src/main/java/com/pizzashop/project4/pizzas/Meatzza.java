@@ -41,4 +41,9 @@ public class Meatzza extends Pizza{
     public void setSize(Size size){
         this.size = size;
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

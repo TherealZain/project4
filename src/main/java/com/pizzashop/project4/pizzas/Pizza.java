@@ -22,5 +22,12 @@ public abstract class Pizza {
     }
     public void setSauce(Sauce newSauce) {
     }
-
+    public void setExtraCheese(boolean extraCheese) {
+        this.extraCheese = extraCheese;
+    }
+    public void setExtraSauce(boolean extraSauce){
+        this.extraSauce = extraSauce;
+    }
+    @Override
+    public abstract String toString();
 }

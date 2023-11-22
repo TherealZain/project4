@@ -24,24 +24,24 @@ public class BuildOwnController {
     @FXML
     private MenuButton sizeSelect;
     @FXML
-    private MenuItem smallItem;
-    @FXML
-    private MenuItem mediumItem;
-    @FXML
-    private MenuItem largeItem;
-    @FXML
-    private MenuItem selectedItem;
+    private MenuItem smallItem, mediumItem, largeItem, selectedItem;
     @FXML
     private CheckBox extraCheese, extraSauce;
     @FXML
     private MainMenuController mainController;
     @FXML
     private TextField priceDisplay;
+    private Order order;
     private Pizza buildYourOwn = PizzaMaker.createPizza("BYO");
     private static final int MAX_TOPPINGS = 7;
+    private static final int REQUIRED_TOPPINGS = 3;
 
     public void setMainController(MainMenuController controller) {
         mainController = controller;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public void initialize() {
@@ -138,6 +138,21 @@ public class BuildOwnController {
         }
     }
 
+    @FXML
+    private void handleSauce(){
+        String sauce = sauceToggleGroup.getSelectedToggle().toString();
+        if(sauce.contains("Tomato")){
+            buildYourOwn.setSauce(Sauce.TOMATO);
+        }else
+            buildYourOwn.setSauce(Sauce.ALFREDO);
+    }
+
+    @FXML
+    private void handleExtraSelect(){
+        buildYourOwn.setExtraCheese(extraCheese.isSelected());
+        buildYourOwn.setExtraSauce(extraSauce.isSelected());
+    }
+
     private void handlePriceChange() {
         double price = buildYourOwn.price();
         if (extraCheese.isSelected()) {
@@ -159,6 +174,14 @@ public class BuildOwnController {
 
     @FXML
     private void handleAddToOrder(){
+        if(selectedToppingsList.getItems().size() < REQUIRED_TOPPINGS){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Pizza must have at least 3 toppings");
+            alert.setContentText("Must have 3 or more toppings");
+            alert.showAndWait();
+            return;
+        }
         mainController.addPizza(buildYourOwn);
         buildYourOwn = PizzaMaker.createPizza("BYO");
         sauceToggleGroup.selectToggle(tomatoSauce);
@@ -173,6 +196,8 @@ public class BuildOwnController {
         alert.setContentText("Order successfully added");
         alert.showAndWait();
     }
+
+
 
     private void handleSizeChange(Size newSize) {
         buildYourOwn.setSize(newSize);

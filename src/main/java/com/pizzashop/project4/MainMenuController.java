@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class MainMenuController{
     private StoreOrders storeOrders = new StoreOrders();
-
     private Order order = new Order(storeOrders.getNextOrderNum());
+
     @FXML
     protected void displayBuildOwn() {
         Stage buildOwn = new Stage();
@@ -29,6 +29,7 @@ public class MainMenuController{
             buildOwn.show();
             BuildOwnController buildOwnController = loader.getController();
             buildOwnController.setMainController(this);
+            buildOwnController.setOrder(order);
         } catch (IOException e) {
             e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -64,16 +65,19 @@ public class MainMenuController{
     @FXML
     protected void displayCurrentOrder() {
         Stage currentOrder = new Stage();
+        currentOrder.setResizable(false);
         AnchorPane root;
         currentOrder.setTitle("Current Order");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("current-order.fxml"));
-            root = (AnchorPane) loader.load();
-            Scene scene = new Scene(root, 500, 400);
+           root = (AnchorPane) loader.load();
+            Scene scene = new Scene(root, 650, 415);
             currentOrder.setScene(scene);
             currentOrder.show();
             CurrentOrderController currentOrderController = loader.getController();
             currentOrderController.setMainController(this);
+            currentOrderController.setOrder(order);
+            currentOrderController.updateOrderDisplay();
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -113,11 +117,7 @@ public class MainMenuController{
         order.addToOrder(pizza);
     }
 
-
-
-
-
-
-
-
+    public Order getOrder(){
+        return order;
+    }
 }

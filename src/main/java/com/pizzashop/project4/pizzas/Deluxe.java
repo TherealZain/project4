@@ -37,4 +37,9 @@ public class Deluxe extends Pizza{
     public void removeToppings(Toppings topping) {
 
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

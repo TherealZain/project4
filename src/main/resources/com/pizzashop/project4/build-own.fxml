@@ -44,7 +44,7 @@
                         </MenuButton>
                         <HBox spacing="10">
                            <children>
-                              <RadioButton fx:id="tomatoSauce" mnemonicParsing="false" prefHeight="8.0" prefWidth="110.0" selected="true" text="Tomato Sauce">
+                              <RadioButton fx:id="tomatoSauce" mnemonicParsing="false" onAction="#handleSauce" prefHeight="8.0" prefWidth="110.0" selected="true" text="Tomato Sauce">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="20.0" top="10.0" />
                                  </VBox.margin>
@@ -52,15 +52,15 @@
                                     <ToggleGroup fx:id="sauceToggleGroup" />
                                  </toggleGroup>
                               </RadioButton>
-                              <RadioButton fx:id="alfredoSauce" mnemonicParsing="false" text="Alfredo Sauce" toggleGroup="$sauceToggleGroup">
+                              <RadioButton fx:id="alfredoSauce" mnemonicParsing="false" onAction="#handleSauce" prefWidth="103.0" text="Alfredo Sauce" toggleGroup="$sauceToggleGroup">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="20.0" />
                                  </VBox.margin>
                               </RadioButton>
                            </children>
                         </HBox>
-                        <CheckBox fx:id="extraCheese" text="Extra Cheese" />
-                        <CheckBox fx:id="extraSauce" text="Extra Sauce" />
+                        <CheckBox fx:id="extraCheese" onAction="#handleExtraSelect" text="Extra Cheese" />
+                        <CheckBox fx:id="extraSauce" onAction="#handleExtraSelect" text="Extra Sauce" />
                      </children>
                   </VBox>
                </children>
