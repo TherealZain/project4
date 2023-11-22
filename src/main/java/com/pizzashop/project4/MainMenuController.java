@@ -89,15 +89,15 @@ public class MainMenuController{
 
     @FXML
     protected void displaySpecialtyPizzas() {
-        Stage specialityPizzas = new Stage();
+        Stage specialtyPizzas = new Stage();
         AnchorPane root;
-        specialityPizzas.setTitle("Speciality Pizzas");
+        specialtyPizzas.setTitle("Specialty Pizzas");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("specialty-pizzas.fxml"));
             root = (AnchorPane) loader.load();
             Scene scene = new Scene(root, 500, 600);
-            specialityPizzas.setScene(scene);
-            specialityPizzas.show();
+            specialtyPizzas.setScene(scene);
+            specialtyPizzas.show();
             SpecialtyPizzasController specialtyPizzasController = loader.getController();
             specialtyPizzasController.setMainController(this);
         } catch (IOException e) {
