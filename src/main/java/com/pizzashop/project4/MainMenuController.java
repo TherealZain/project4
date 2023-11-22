@@ -95,7 +95,7 @@ public class MainMenuController{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("specialty-pizzas.fxml"));
             root = (AnchorPane) loader.load();
-            Scene scene = new Scene(root, 500, 400);
+            Scene scene = new Scene(root, 500, 600);
             specialityPizzas.setScene(scene);
             specialityPizzas.show();
             SpecialtyPizzasController specialtyPizzasController = loader.getController();
