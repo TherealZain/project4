@@ -148,19 +148,15 @@ public class BuildOwnController {
     }
 
     @FXML
-    private void handleExtraSelect(){
+    public void handleExtraSelect(){
         buildYourOwn.setExtraCheese(extraCheese.isSelected());
         buildYourOwn.setExtraSauce(extraSauce.isSelected());
+        handlePriceChange();
+
     }
 
     private void handlePriceChange() {
         double price = buildYourOwn.price();
-        if (extraCheese.isSelected()) {
-            price += 1.0;
-        }
-        if (extraSauce.isSelected()) {
-            price += 1.0;
-        }
         priceDisplay.setText(String.format("%.2f", price));
     }
 

@@ -32,6 +32,12 @@ public class BuildYourOwn extends Pizza{
         if(toppings.size() > MAX_TOPPINGS){
             price += (toppings.size() - MAX_TOPPINGS)*EXTRA_TOPPING_COST;
         }
+        if(extraCheese){
+            price++;
+        }
+        if(extraSauce){
+            price++;
+        }
         return price;
     }
 

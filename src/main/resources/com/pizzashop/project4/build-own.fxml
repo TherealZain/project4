@@ -57,8 +57,8 @@
                               </RadioButton>
                            </children>
                         </HBox>
-                        <CheckBox fx:id="extraCheese" onAction="#handleExtraSelect" text="Extra Cheese" />
-                        <CheckBox fx:id="extraSauce" onAction="#handleExtraSelect" text="Extra Sauce" />
+                        <CheckBox fx:id="extraCheese" onAction="#handleExtraSelect" onMouseClicked="#handleExtraSelect" text="Extra Cheese" />
+                        <CheckBox fx:id="extraSauce" onAction="#handleExtraSelect" onMouseClicked="#handleExtraSelect" text="Extra Sauce" />
                      </children>
                   </VBox>
                </children>
