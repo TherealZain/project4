@@ -31,7 +31,6 @@ public class MainMenuController{
             buildOwnController.setMainController(this);
             buildOwnController.setOrder(order);
         } catch (IOException e) {
-            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading build-own.fxml.");
@@ -101,6 +100,7 @@ public class MainMenuController{
             SpecialtyPizzasController specialtyPizzasController = loader.getController();
             specialtyPizzasController.setMainController(this);
         } catch (IOException e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading build-own.fxml.");

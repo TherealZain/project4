@@ -3,11 +3,13 @@ package com.pizzashop.project4.pizzas;
 import com.pizzashop.project4.enums.Sauce;
 import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
+import java.util.ArrayList;
 
 public class Seafood extends Pizza{
     private static final double SEAFOOD_SMALL_PRICE = 17.99;
 
     public Seafood() {
+        toppings = new ArrayList<>();
         sauce = Sauce.ALFREDO;
         toppings.add(Toppings.SHRIMP);
         toppings.add(Toppings.SQUID);
@@ -34,6 +36,11 @@ public class Seafood extends Pizza{
     @Override
     public void removeToppings(Toppings topping) {
 
+    }
+
+    @Override
+    public void setSize(Size newSize) {
+        this.size = newSize;
     }
 
     @Override
