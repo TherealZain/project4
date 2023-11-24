@@ -12,10 +12,29 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * Controller class for the main menu in a pizza ordering application.
+ * This class manages the main user interface and interactions, allowing
+ * users to navigate through different stages of pizza ordering.
+ * It includes functionalities to display various types of pizza customization
+ * and ordering screens, and manage the current and store orders.
+ *
+ * Methods in this class handle the creation and display of different stages
+ * for building your own pizza, viewing store orders, viewing the current order,
+ * and selecting specialty pizzas.
+ *
+ * @author Zain Zulfiqar, Nicholas Yim
+ */
 public class MainMenuController{
     private StoreOrders storeOrders = new StoreOrders();
     private Order order = new Order(storeOrders.getNextOrderNum());
 
+
+    /**
+     * Displays the interface for building a custom pizza.
+     * It loads the "build-own.fxml" and sets up the necessary controllers and scene.
+     * In case of an error, it displays an alert with the error message.
+     */
     @FXML
     protected void displayBuildOwn() {
         Stage buildOwn = new Stage();
@@ -39,6 +58,11 @@ public class MainMenuController{
         }
     }
 
+    /**
+     * Displays the store orders interface.
+     * It loads the "store-orders.fxml" and sets up the necessary controllers and scene.
+     * In case of an error, it displays an alert with the error message.
+     */
     @FXML
     protected void displayStoreOrders() {
         Stage storeOrders = new Stage();
@@ -61,6 +85,11 @@ public class MainMenuController{
         }
     }
 
+    /**
+     * Displays the current order interface.
+     * It loads the "current-order.fxml" and sets up the necessary controllers and scene.
+     * In case of an error, it displays an alert with the error message.
+     */
     @FXML
     protected void displayCurrentOrder() {
         Stage currentOrder = new Stage();
@@ -86,6 +115,11 @@ public class MainMenuController{
         }
     }
 
+    /**
+     * Displays the specialty pizzas interface.
+     * It loads the "specialty-pizzas.fxml" and sets up the necessary controllers and scene.
+     * In case of an error, it displays an alert with the error message.
+     */
     @FXML
     protected void displaySpecialtyPizzas() {
         Stage specialtyPizzas = new Stage();
@@ -98,6 +132,7 @@ public class MainMenuController{
             specialtyPizzas.setScene(scene);
             specialtyPizzas.show();
             SpecialtyPizzasController specialtyPizzasController = loader.getController();
+            specialtyPizzasController.setOrder(order);
             specialtyPizzasController.setMainController(this);
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,15 +144,23 @@ public class MainMenuController{
         }
     }
 
+
+    /**
+     * Creates a new order with a unique order number.
+     * This method initializes a new order instance and is typically called
+     * when starting a new pizza order.
+     */
     public void createNewOrder(){
         order = new Order(storeOrders.getNextOrderNum());
     }
 
+    /**
+     * Adds a pizza to the current order.
+     * This method takes a Pizza object and adds it to the current order.
+     *
+     * @param pizza The Pizza object to be added to the order.
+     */
     public void addPizza(Pizza pizza){
         order.addToOrder(pizza);
-    }
-
-    public Order getOrder(){
-        return order;
     }
 }

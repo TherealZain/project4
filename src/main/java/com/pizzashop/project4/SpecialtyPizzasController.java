@@ -24,12 +24,16 @@ public class SpecialtyPizzasController {
     private ListView<String> toppingsList;
     @FXML
     private TextField sauceDisplay;
+    Order order;
     private Pizza specialtyPizza;
     private MainMenuController mainController;
     public void setMainController(MainMenuController controller) {
         mainController = controller;
     }
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public void initialize() {
         specialtyPizzaSelect.setItems(FXCollections.observableArrayList("Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood"));
