@@ -89,21 +89,12 @@ public class BuildOwnController {
         sizeSelect.setText(menuItem.getText());
     }
 
-    private String capitalize(String input) {
-        char[] chars = input.toCharArray();
-        boolean found = false;
-        for (int i = 0; i < chars.length; i++) {
-            if (!found && Character.isLetter(chars[i])) {
-                chars[i] = Character.toUpperCase(chars[i]);
-                found = true;
-            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other characters here if needed
-                found = false;
-            }
+    public static String capitalize(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
         }
-        return String.valueOf(chars);
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
-
-
 
     @FXML
     private void handleAddTopping() {
@@ -152,7 +143,6 @@ public class BuildOwnController {
         buildYourOwn.setExtraCheese(extraCheese.isSelected());
         buildYourOwn.setExtraSauce(extraSauce.isSelected());
         handlePriceChange();
-
     }
 
     private void handlePriceChange() {
@@ -192,8 +182,6 @@ public class BuildOwnController {
         alert.setContentText("Order successfully added");
         alert.showAndWait();
     }
-
-
 
     private void handleSizeChange(Size newSize) {
         buildYourOwn.setSize(newSize);

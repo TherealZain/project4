@@ -1,14 +1,18 @@
 package com.pizzashop.project4.pizzas;
 
+import com.pizzashop.project4.BuildOwnController;
 import com.pizzashop.project4.enums.Sauce;
 import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
+import java.util.ArrayList;
 
 public class Deluxe extends Pizza{
 
     private static final double DELUXE_SMALL_PRICE = 14.99;
 
     public Deluxe() {
+        toppings = new ArrayList<>();
+        size = Size.SMALL;
         sauce = Sauce.TOMATO;
         toppings.add(Toppings.SAUSAGE);
         toppings.add(Toppings.PEPPERONI);
@@ -20,11 +24,18 @@ public class Deluxe extends Pizza{
     public double price() {
         double price = DELUXE_SMALL_PRICE;
         if(size == Size.MEDIUM){
-            return price + Size.MEDIUM.getPriceAdd();
-        }
+            price += Size.MEDIUM.getPriceAdd();
+        }else
         if(size == Size.LARGE){
-            return price + Size.LARGE.getPriceAdd();
+            price += Size.LARGE.getPriceAdd();
         }
+        if(extraCheese){
+            price++;
+        }
+        if(extraSauce){
+            price++;
+        }
+        System.out.println("Price calculated: " + price); // Debugging statement
         return price;
     }
 
@@ -39,7 +50,30 @@ public class Deluxe extends Pizza{
     }
 
     @Override
+    public void setSize(Size newSize) {
+        this.size = newSize;
+    }
+
+    @Override
     public String toString() {
-        return null;
+        String pizzaType = "[Deluxe] ";
+        String toppingsString = "";
+        for (Toppings topping : toppings) {
+            if (!toppingsString.isEmpty()) {
+                toppingsString += ", ";
+            }
+            toppingsString += BuildOwnController.capitalize(topping.name().toLowerCase().replace('_', ' '));
+        }
+        String sizeString = ", " + size.toString().toLowerCase();
+        String sauceString = ", " + sauce.toString().toLowerCase();
+
+        String extraCheeseString = extraCheese ? ", extra cheese" : "";
+        String extraSauceString = extraSauce ? ", extra sauce" : "";
+
+        String priceString = " $" + String.format("%.2f", price());
+
+        String result = pizzaType + toppingsString + sizeString + sauceString + extraCheeseString + extraSauceString + priceString;
+        System.out.println("toString generated: " + result); // Debugging statement
+        return result;
     }
 }

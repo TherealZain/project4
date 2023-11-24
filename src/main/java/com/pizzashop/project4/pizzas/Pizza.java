@@ -4,6 +4,7 @@ import com.pizzashop.project4.enums.Sauce;
 import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class Pizza {
@@ -27,6 +28,12 @@ public abstract class Pizza {
     }
     public void setExtraSauce(boolean extraSauce){
         this.extraSauce = extraSauce;
+    }
+    public ArrayList<Toppings> getToppings() {
+        return toppings;
+    }
+    public Sauce getSauce() {
+        return sauce;
     }
     @Override
     public abstract String toString();

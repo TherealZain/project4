@@ -1,8 +1,10 @@
 package com.pizzashop.project4;
 
 import com.pizzashop.project4.enums.Size;
+import com.pizzashop.project4.enums.Toppings;
 import com.pizzashop.project4.pizzas.Pizza;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -18,6 +20,10 @@ public class SpecialtyPizzasController {
     private CheckBox extraCheese, extraSauce;
     @FXML
     private TextField priceDisplay;
+    @FXML
+    private ListView<String> toppingsList;
+    @FXML
+    private TextField sauceDisplay;
     private Pizza specialtyPizza;
     private MainMenuController mainController;
     public void setMainController(MainMenuController controller) {
@@ -26,28 +32,44 @@ public class SpecialtyPizzasController {
 
 
     public void initialize() {
-        specialtyPizzaSelect.setItems(FXCollections.observableArrayList("Deluxe", "Supreme", "Meat Lovers", "Pepperoni", "Seafood"));
+        specialtyPizzaSelect.setItems(FXCollections.observableArrayList("Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood"));
         specialtyPizzaSelect.setOnAction(event -> handleSpecialtySelect());
 
         sizeToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> handleSizeChange());
+        smallSize.setSelected(true);
 
         extraCheese.setOnAction(event -> handlePriceChange());
         extraSauce.setOnAction(event -> handlePriceChange());
 
-        // Default to the first specialty pizza
         specialtyPizzaSelect.getSelectionModel().selectFirst();
         handleSpecialtySelect();
+    }
+
+    private String capitalize(String input) {
+        if (input == null || input.isEmpty()) {
+            return input;
+        }
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
     private void handleSpecialtySelect() {
         String selected = specialtyPizzaSelect.getSelectionModel().getSelectedItem();
         specialtyPizza = PizzaMaker.createPizza(selected);
-        updateToppingsDisplay();
-        handlePriceChange();
+        updateToppingsDisplay(specialtyPizza);
+        updateSauceDisplay(specialtyPizza);
+        handleSizeChange();
     }
 
-    private void updateToppingsDisplay() {
-        // Update the display of toppings based on the selected specialty pizza
+    private void updateToppingsDisplay(Pizza pizza) {
+        ObservableList<String> toppings = FXCollections.observableArrayList();
+        for (Toppings value : pizza.getToppings()) {
+            toppings.add(capitalize(value.name().toLowerCase().replace('_', ' ')));
+        }
+        toppingsList.setItems(toppings);
+    }
+
+    private void updateSauceDisplay(Pizza pizza) {
+        sauceDisplay.setText(capitalize(pizza.getSauce().toString().toLowerCase()));
     }
 
     private void handleSizeChange() {
@@ -58,15 +80,38 @@ public class SpecialtyPizzasController {
 
     private void handlePriceChange() {
         double price = specialtyPizza.price();
-        if (extraCheese.isSelected()) price += 1.0;
-        if (extraSauce.isSelected()) price += 1.0;
         priceDisplay.setText(String.format("%.2f", price));
     }
 
     @FXML
+    public void handleExtraSelect(){
+        specialtyPizza.setExtraCheese(extraCheese.isSelected());
+        specialtyPizza.setExtraSauce(extraSauce.isSelected());
+        handlePriceChange();
+    }
+
+    @FXML
     private void handleAddToOrder() {
-        // Handle adding the configured specialty pizza to the order
         mainController.addPizza(specialtyPizza);
-        // Show a confirmation alert
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Order added to Cart");
+        alert.setContentText("Order successfully added");
+        alert.showAndWait();
+
+        resetOrderUI();
+    }
+
+    private void resetOrderUI() {
+        sizeToggleGroup.selectToggle(smallSize);
+        smallSize.setSelected(true);
+
+        extraCheese.setSelected(false);
+        extraSauce.setSelected(false);
+
+        specialtyPizzaSelect.getSelectionModel().selectFirst();
+
+        handleSpecialtySelect();
     }
 }

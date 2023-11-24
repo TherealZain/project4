@@ -3,17 +3,18 @@ package com.pizzashop.project4.pizzas;
 import com.pizzashop.project4.enums.Sauce;
 import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
+import java.util.ArrayList;
 
 public class Meatzza extends Pizza{
 
     private static final double MEATZZA_SMALL_PRICE = 16.99;
     public Meatzza(){
+        toppings = new ArrayList<>();
         sauce = Sauce.TOMATO;
         toppings.add(Toppings.SAUSAGE);
         toppings.add(Toppings.PEPPERONI);
-        toppings.add(Toppings.GREENPEPPER);
-        toppings.add(Toppings.ONION);
-        toppings.add(Toppings.MUSHROOM);
+        toppings.add(Toppings.BEEF);
+        toppings.add(Toppings.HAM);
     }
 
     @Override
@@ -38,8 +39,9 @@ public class Meatzza extends Pizza{
 
     }
 
-    public void setSize(Size size){
-        this.size = size;
+    @Override
+    public void setSize(Size newSize) {
+        this.size = newSize;
     }
 
     @Override
