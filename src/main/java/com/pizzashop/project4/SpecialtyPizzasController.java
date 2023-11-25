@@ -81,7 +81,7 @@ public class SpecialtyPizzasController {
                 specialtyPizzasImage.setImage(new Image("@images/meatzza_pizza.png"));
                 break;
             case "Pepperoni":
-                specialtyPizzasImage.setImage(new Image("@images/pepperoni_pizza.png"));
+                specialtyPizzasImage.setImage(new Image("@images/pepperoni_pizza.jpeg"));
                 break;
             case "Seafood":
                 specialtyPizzasImage.setImage(new Image("@images/seafood_pizza.png"));
