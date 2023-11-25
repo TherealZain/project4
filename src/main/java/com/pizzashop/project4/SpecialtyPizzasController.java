@@ -7,9 +7,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class SpecialtyPizzasController {
 
+    @FXML
+    private ImageView specialtyPizzasImage;
     @FXML
     private ComboBox<String> specialtyPizzaSelect;
     @FXML
@@ -61,7 +65,31 @@ public class SpecialtyPizzasController {
         specialtyPizza = PizzaMaker.createPizza(selected);
         updateToppingsDisplay(specialtyPizza);
         updateSauceDisplay(specialtyPizza);
+        updatePizzaImage(selected);
         handleSizeChange();
+    }
+
+    private void updatePizzaImage(String pizzaType) {
+        switch (pizzaType) {
+            case "Deluxe":
+                specialtyPizzasImage.setImage(new Image("@images/deluxe_pizza.png"));
+                break;
+            case "Supreme":
+                specialtyPizzasImage.setImage(new Image("@images/supreme_pizza.png"));
+                break;
+            case "Meatzza":
+                specialtyPizzasImage.setImage(new Image("@images/meatzza_pizza.png"));
+                break;
+            case "Pepperoni":
+                specialtyPizzasImage.setImage(new Image("@images/pepperoni_pizza.png"));
+                break;
+            case "Seafood":
+                specialtyPizzasImage.setImage(new Image("@images/seafood_pizza.png"));
+                break;
+
+            default:
+                break;
+        }
     }
 
     private void updateToppingsDisplay(Pizza pizza) {
