@@ -33,7 +33,7 @@
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/byo_pizza.png" />
+                              <Image url="@../../../images/byo_pizza.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -48,7 +48,7 @@
                      <graphic>
                         <ImageView fx:id="displayCurrentOrder" fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/current_order.png" />
+                              <Image url="@../../../images/current_order.png" />
                            </image>
                         </ImageView>
                   </graphic>
@@ -60,7 +60,7 @@
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/specialty_pizzas.png" />
+                              <Image url="@../../../images/specialty_pizzas.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -72,7 +72,7 @@
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/store_orders.png" />
+                              <Image url="@../../../images/store_orders.png" />
                            </image>
                         </ImageView>
                      </graphic>

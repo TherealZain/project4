@@ -27,7 +27,7 @@
                <children>
                   <ImageView fx:id="byoPizzaImage" fitHeight="150.0" fitWidth="150.0" preserveRatio="true">
                      <image>
-                        <Image url="@images/byo_pizza.png" />
+                        <Image url="@../../../images/byo_pizza.png" />
                      </image>
                   </ImageView>
                   <VBox spacing="5">

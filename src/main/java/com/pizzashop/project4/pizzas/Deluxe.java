@@ -54,10 +54,9 @@ public class Deluxe extends Pizza{
         if(extraCheese){
             price++;
         }
-        if(extraSauce){
+        if(extraSauce) {
             price++;
         }
-        System.out.println("Price calculated: " + price); // Debugging statement
         return price;
     }
 

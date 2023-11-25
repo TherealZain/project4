@@ -3,6 +3,7 @@ package com.pizzashop.project4;
 import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
 import com.pizzashop.project4.pizzas.Pizza;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -40,17 +41,18 @@ public class SpecialtyPizzasController {
     }
 
     public void initialize() {
+        specialtyPizza = PizzaMaker.createPizza("Deluxe");
         specialtyPizzaSelect.setItems(FXCollections.observableArrayList("Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood"));
         specialtyPizzaSelect.setOnAction(event -> handleSpecialtySelect());
-
         sizeToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> handleSizeChange());
         smallSize.setSelected(true);
-
         extraCheese.setOnAction(event -> handlePriceChange());
         extraSauce.setOnAction(event -> handlePriceChange());
-
         specialtyPizzaSelect.getSelectionModel().selectFirst();
-        handleSpecialtySelect();
+        Platform.runLater(() -> {
+            specialtyPizzaSelect.getSelectionModel().select("Deluxe");
+            handleSpecialtySelect();
+        });
     }
 
     private String capitalize(String input) {
@@ -65,30 +67,34 @@ public class SpecialtyPizzasController {
         specialtyPizza = PizzaMaker.createPizza(selected);
         updateToppingsDisplay(specialtyPizza);
         updateSauceDisplay(specialtyPizza);
+        handlePriceChange();
         updatePizzaImage(selected);
         handleSizeChange();
+        sizeToggleGroup.selectToggle(smallSize);
+        smallSize.setSelected(true);
+        extraCheese.setSelected(false);
+        extraSauce.setSelected(false);
+
     }
 
+    @FXML
     private void updatePizzaImage(String pizzaType) {
-        switch (pizzaType) {
-            case "Deluxe":
-                specialtyPizzasImage.setImage(new Image("@images/deluxe_pizza.png"));
-                break;
-            case "Supreme":
-                specialtyPizzasImage.setImage(new Image("@images/supreme_pizza.png"));
-                break;
-            case "Meatzza":
-                specialtyPizzasImage.setImage(new Image("@images/meatzza_pizza.png"));
-                break;
-            case "Pepperoni":
-                specialtyPizzasImage.setImage(new Image("@images/pepperoni_pizza.jpeg"));
-                break;
-            case "Seafood":
-                specialtyPizzasImage.setImage(new Image("@images/seafood_pizza.png"));
-                break;
+        String imagePath = switch (pizzaType) {
+            case "Deluxe" -> "/images/deluxe_pizza.png";
+            case "Supreme" -> "/images/supreme_pizza.png";
+            case "Meatzza" -> "/images/meatzza_pizza.png";
+            case "Pepperoni" -> "/images/pepperoni_pizza.jpeg";
+            case "Seafood" -> "/images/seafood_pizza.png";
+            default -> null;
+        };
 
-            default:
-                break;
+        if (imagePath != null) {
+            try {
+                Image image = new Image(getClass().getResourceAsStream(imagePath));
+                specialtyPizzasImage.setImage(image);
+            } catch (Exception ignored) {
+
+            }
         }
     }
 
@@ -125,7 +131,6 @@ public class SpecialtyPizzasController {
     @FXML
     private void handleAddToOrder() {
         mainController.addPizza(specialtyPizza);
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Order added to Cart");
@@ -138,12 +143,9 @@ public class SpecialtyPizzasController {
     private void resetOrderUI() {
         sizeToggleGroup.selectToggle(smallSize);
         smallSize.setSelected(true);
-
         extraCheese.setSelected(false);
         extraSauce.setSelected(false);
-
         specialtyPizzaSelect.getSelectionModel().selectFirst();
-
         handleSpecialtySelect();
     }
 }

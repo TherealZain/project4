@@ -43,6 +43,12 @@ public class Pepperoni extends Pizza{
         if(size == Size.LARGE){
             return price + Size.LARGE.getPriceAdd();
         }
+        if(extraCheese){
+            price++;
+        }
+        if(extraSauce){
+            price++;
+        }
         return price;
     }
 
