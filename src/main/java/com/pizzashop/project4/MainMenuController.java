@@ -26,8 +26,11 @@ import java.util.ArrayList;
  * @author Zain Zulfiqar, Nicholas Yim
  */
 public class MainMenuController{
-    private StoreOrders storeOrders = new StoreOrders();
+    private StoreOrders storeOrders = StoreOrders.getInstance();
     private Order order = new Order(storeOrders.getNextOrderNum());
+    private BuildOwnController buildOwnController;
+    private CurrentOrderController currentOrderController;
+    private SpecialtyPizzasController specialtyPizzasController;
 
 
     /**
@@ -38,6 +41,7 @@ public class MainMenuController{
     @FXML
     protected void displayBuildOwn() {
         Stage buildOwn = new Stage();
+        buildOwn.setResizable(false);
         AnchorPane root;
         buildOwn.setTitle("Customize Your Pizza");
         try {
@@ -46,7 +50,7 @@ public class MainMenuController{
             Scene scene = new Scene(root, 500, 600);
             buildOwn.setScene(scene);
             buildOwn.show();
-            BuildOwnController buildOwnController = loader.getController();
+            buildOwnController = loader.getController();
             buildOwnController.setMainController(this);
             buildOwnController.setOrder(order);
         } catch (IOException e) {
@@ -66,12 +70,13 @@ public class MainMenuController{
     @FXML
     protected void displayStoreOrders() {
         Stage storeOrders = new Stage();
+        storeOrders.setResizable(false);
         AnchorPane root;
         storeOrders.setTitle("Store Orders");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("store-orders.fxml"));
             root = (AnchorPane) loader.load();
-            Scene scene = new Scene(root, 500, 400);
+            Scene scene = new Scene(root, 600, 400);
             storeOrders.setScene(scene);
             storeOrders.show();
             StoreOrdersController storeOrdersController = loader.getController();
@@ -102,7 +107,7 @@ public class MainMenuController{
             Scene scene = new Scene(root, 650, 415);
             currentOrder.setScene(scene);
             currentOrder.show();
-            CurrentOrderController currentOrderController = loader.getController();
+            currentOrderController = loader.getController();
             currentOrderController.setMainController(this);
             currentOrderController.setOrder(order);
             currentOrderController.updateOrderDisplay();
@@ -123,6 +128,7 @@ public class MainMenuController{
     @FXML
     protected void displaySpecialtyPizzas() {
         Stage specialtyPizzas = new Stage();
+        specialtyPizzas.setResizable(false);
         AnchorPane root;
         specialtyPizzas.setTitle("Specialty Pizzas");
         try {
@@ -131,7 +137,7 @@ public class MainMenuController{
             Scene scene = new Scene(root, 500, 600);
             specialtyPizzas.setScene(scene);
             specialtyPizzas.show();
-            SpecialtyPizzasController specialtyPizzasController = loader.getController();
+            specialtyPizzasController = loader.getController();
             specialtyPizzasController.setOrder(order);
             specialtyPizzasController.setMainController(this);
         } catch (IOException e) {
@@ -149,9 +155,15 @@ public class MainMenuController{
      * Creates a new order with a unique order number.
      * This method initializes a new order instance and is typically called
      * when starting a new pizza order.
+     *
+     * @return the new instance of order
      */
-    public void createNewOrder(){
+    public Order createNewOrder(){
         order = new Order(storeOrders.getNextOrderNum());
+        specialtyPizzasController.setOrder(order);
+        currentOrderController.setOrder(order);
+        buildOwnController.setOrder(order);
+        return order;
     }
 
     /**

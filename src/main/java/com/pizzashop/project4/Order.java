@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class Order {
     private int orderNum;
     private ArrayList<Pizza> pizzaOrders;
+    private static final double SALES_TAX_RATE = 0.06625;
 
 
     /**
@@ -55,4 +56,24 @@ public class Order {
      * @return An ArrayList of Pizza objects.
      */
     public ArrayList<Pizza> getPizzas(){return pizzaOrders;}
+
+    public boolean removePizza(int pizzaIndex){
+        if (pizzaIndex >= 0 && pizzaIndex < pizzaOrders.size()) {
+            pizzaOrders.remove(pizzaIndex);
+            return true; // Successfully removed
+        }
+        return false; // Removal failed
+    }
+
+    public String getOrderTotal() {
+        double subTotal = 0;
+        for (Pizza pizza : pizzaOrders) {
+            if (pizza != null) {
+                subTotal += pizza.price();
+            }
+        }
+        double salesTax = Math.round((subTotal*SALES_TAX_RATE)*100.0)/100.0;
+        double totalCost = Math.round((subTotal + salesTax)*100.0)/100.0;
+        return String.format("%.2f", totalCost);
+    }
 }

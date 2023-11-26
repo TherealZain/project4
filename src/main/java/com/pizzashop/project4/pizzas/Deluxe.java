@@ -108,18 +108,15 @@ public class Deluxe extends Pizza{
             if (!toppingsString.isEmpty()) {
                 toppingsString += ", ";
             }
-            toppingsString += BuildOwnController.capitalize(topping.name().toLowerCase().replace('_', ' '));
+            toppingsString += BuildOwnController.capitalize
+                    (topping.name().toLowerCase().replace('_', ' '));
         }
         String sizeString = ", " + size.toString().toLowerCase();
         String sauceString = ", " + sauce.toString().toLowerCase();
-
         String extraCheeseString = extraCheese ? ", extra cheese" : "";
         String extraSauceString = extraSauce ? ", extra sauce" : "";
-
         String priceString = " $" + String.format("%.2f", price());
-
-        String result = pizzaType + toppingsString + sizeString + sauceString + extraCheeseString + extraSauceString + priceString;
-        System.out.println("toString generated: " + result); // Debugging statement
-        return result;
+        return pizzaType + toppingsString + sizeString + sauceString + extraCheeseString +
+                extraSauceString + priceString;
     }
 }

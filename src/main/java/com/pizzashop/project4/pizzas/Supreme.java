@@ -1,5 +1,6 @@
 package com.pizzashop.project4.pizzas;
 
+import com.pizzashop.project4.BuildOwnController;
 import com.pizzashop.project4.enums.Sauce;
 import com.pizzashop.project4.enums.Size;
 import com.pizzashop.project4.enums.Toppings;
@@ -101,6 +102,21 @@ public class Supreme extends Pizza{
      */
     @Override
     public String toString() {
-        return null;
+        String pizzaType = "[Supreme] ";
+        String toppingsString = "";
+        for (Toppings topping : toppings) {
+            if (!toppingsString.isEmpty()) {
+                toppingsString += ", ";
+            }
+            toppingsString += BuildOwnController.capitalize
+                    (topping.name().toLowerCase().replace('_', ' '));
+        }
+        String sizeString = ", " + size.toString().toLowerCase();
+        String sauceString = ", " + sauce.toString().toLowerCase();
+        String extraCheeseString = extraCheese ? ", extra cheese" : "";
+        String extraSauceString = extraSauce ? ", extra sauce" : "";
+        String priceString = " $" + String.format("%.2f", price());
+        return pizzaType + toppingsString + sizeString + sauceString + extraCheeseString +
+                extraSauceString + priceString;
     }
 }

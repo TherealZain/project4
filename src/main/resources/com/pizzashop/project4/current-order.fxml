@@ -89,12 +89,12 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="131.0" prefWidth="191.0">
                      <children>
-                        <Button fx:id="placeOrderButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="203.0" text="Place Order">
+                        <Button fx:id="placeOrderButton" mnemonicParsing="false" onAction="#handlePlaceOrder" prefHeight="26.0" prefWidth="203.0" text="Place Order">
                            <VBox.margin>
                               <Insets bottom="15.0" left="10.0" right="15.0" />
                            </VBox.margin>
                         </Button>
-                        <Button fx:id="removeButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="192.0" text="Remove Pizza">
+                        <Button fx:id="removeButton" mnemonicParsing="false" onAction="#handleRemovePizza" prefHeight="26.0" prefWidth="192.0" text="Remove Pizza">
                            <VBox.margin>
                               <Insets bottom="15.0" left="10.0" right="15.0" />
                            </VBox.margin>

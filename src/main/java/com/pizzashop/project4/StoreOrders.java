@@ -13,6 +13,8 @@ import java.util.ArrayList;
  * @author Zain Zulfiqar, Nicholas Yim
  */
 public class StoreOrders {
+
+    private static StoreOrders instance;
     private ArrayList<Order> storeOrders;
     private static int nextOrderNum;
 
@@ -21,9 +23,16 @@ public class StoreOrders {
      * Initializes the store orders list and
      * sets the next available order number to 1.
      */
-    public StoreOrders(){
+    private StoreOrders(){
         nextOrderNum = 1;
         storeOrders = new ArrayList<>();
+    }
+
+    public static StoreOrders getInstance() {
+        if (instance == null) {
+            instance = new StoreOrders();
+        }
+        return instance;
     }
 
     /**
@@ -34,9 +43,20 @@ public class StoreOrders {
      * @return The next available order number as an integer.
      */
     public int getNextOrderNum(){
-        int currOrderNum = nextOrderNum;
-        nextOrderNum++;
-        return currOrderNum;
+        return nextOrderNum;
+    }
+
+    public ArrayList<Order> getOrders(){
+        return storeOrders;
+    }
+
+    public boolean addOrder(Order order){
+        if(order != null && !order.getPizzas().isEmpty()){
+            storeOrders.add(order);
+            nextOrderNum++;
+            return true;
+        }
+        return false;
     }
 
 }
