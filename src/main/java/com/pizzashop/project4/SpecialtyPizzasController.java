@@ -29,9 +29,11 @@ public class SpecialtyPizzasController {
     private ListView<String> toppingsList;
     @FXML
     private TextField sauceDisplay;
+    @FXML
+    private MainMenuController mainController;
     Order order;
     private Pizza specialtyPizza;
-    private MainMenuController mainController;
+
     public void setMainController(MainMenuController controller) {
         mainController = controller;
     }
