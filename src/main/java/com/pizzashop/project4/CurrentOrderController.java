@@ -1,6 +1,5 @@
 package com.pizzashop.project4;
 
-
 import com.pizzashop.project4.pizzas.Pizza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
