@@ -140,8 +140,8 @@ public class BuildOwnController {
 
     /**
      * Handles the action of adding a topping to the pizza.
-     * This method is triggered when the 'Add' button is clicked. I
-     * t updates the pizza and price accordingly.
+     * This method is triggered when the 'Add' button is clicked.
+     * It updates the pizza and price accordingly.
      */
     @FXML
     private void handleAddTopping() {
@@ -263,7 +263,8 @@ public class BuildOwnController {
 
     /**
      * Handles changes in pizza size.
-     * This method updates the pizza size and recalculates the price when a different size is selected.
+     * This method updates the pizza size and recalculates the price
+     * when a different size is selected.
      *
      * @param newSize The new size selected for the pizza.
      */
