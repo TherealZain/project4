@@ -86,7 +86,7 @@
       </BorderPane>
       <VBox layoutX="-6.0" layoutY="-1.0" prefHeight="111.0" prefWidth="842.0">
          <children>
-            <TextField alignment="CENTER" prefHeight="102.0" prefWidth="842.0" text="RU PIZZA">
+            <TextField alignment="CENTER" editable="false" prefHeight="102.0" prefWidth="842.0" text="RU PIZZA">
                <font>
                   <Font size="41.0" />
                </font>

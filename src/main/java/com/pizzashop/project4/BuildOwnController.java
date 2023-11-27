@@ -202,7 +202,7 @@ public class BuildOwnController {
      * checkboxes are toggled.
      */
     @FXML
-    public void handleExtraSelect(){
+    private void handleExtraSelect(){
         buildYourOwn.setExtraCheese(extraCheese.isSelected());
         buildYourOwn.setExtraSauce(extraSauce.isSelected());
         handlePriceChange();
