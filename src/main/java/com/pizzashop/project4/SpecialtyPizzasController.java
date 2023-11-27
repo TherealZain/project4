@@ -32,7 +32,7 @@ public class SpecialtyPizzasController {
     @FXML
     private MainMenuController mainController;
     Order order;
-    private Pizza specialtyPizza;
+    private Pizza specialtyPizza = PizzaMaker.createPizza("Deluxe");
 
     public void setMainController(MainMenuController controller) {
         mainController = controller;
@@ -43,13 +43,10 @@ public class SpecialtyPizzasController {
     }
 
     public void initialize() {
-        specialtyPizza = PizzaMaker.createPizza("Deluxe");
         specialtyPizzaSelect.setItems(FXCollections.observableArrayList("Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood"));
         specialtyPizzaSelect.setOnAction(event -> handleSpecialtySelect());
         sizeToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> handleSizeChange());
         smallSize.setSelected(true);
-        extraCheese.setOnAction(event -> handlePriceChange());
-        extraSauce.setOnAction(event -> handlePriceChange());
         specialtyPizzaSelect.getSelectionModel().selectFirst();
         Platform.runLater(() -> {
             specialtyPizzaSelect.getSelectionModel().select("Deluxe");
@@ -73,7 +70,6 @@ public class SpecialtyPizzasController {
         updatePizzaImage(selected);
         handleSizeChange();
         sizeToggleGroup.selectToggle(smallSize);
-        smallSize.setSelected(true);
         extraCheese.setSelected(false);
         extraSauce.setSelected(false);
 
@@ -123,16 +119,19 @@ public class SpecialtyPizzasController {
         priceDisplay.setText(String.format("%.2f", price));
     }
 
-    @FXML
-    public void handleExtraSelect(){
-        specialtyPizza.setExtraCheese(extraCheese.isSelected());
-        specialtyPizza.setExtraSauce(extraSauce.isSelected());
+    public void handleExtraSelect(Pizza pizza){
+        pizza.setExtraCheese(extraCheese.isSelected());
+        pizza.setExtraSauce(extraSauce.isSelected());
         handlePriceChange();
     }
 
     @FXML
     private void handleAddToOrder() {
-        mainController.addPizza(specialtyPizza);
+        Pizza testPizza = PizzaMaker.createPizza(specialtyPizzaSelect.getSelectionModel().getSelectedItem());
+        RadioButton selectedSize = (RadioButton) sizeToggleGroup.getSelectedToggle();
+        handleExtraSelect(testPizza);
+        testPizza.setSize(Size.valueOf((selectedSize.getText().toUpperCase())));
+        order.addToOrder(testPizza);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Order added to Cart");

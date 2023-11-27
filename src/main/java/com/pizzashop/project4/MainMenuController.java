@@ -109,9 +109,11 @@ public class MainMenuController{
             currentOrder.show();
             currentOrderController = loader.getController();
             currentOrderController.setMainController(this);
+            System.out.println(order);
             currentOrderController.setOrder(order);
             currentOrderController.updateOrderDisplay();
         } catch (IOException e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
             alert.setHeaderText("Loading build-own.fxml.");
@@ -174,5 +176,6 @@ public class MainMenuController{
      */
     public void addPizza(Pizza pizza){
         order.addToOrder(pizza);
+
     }
 }

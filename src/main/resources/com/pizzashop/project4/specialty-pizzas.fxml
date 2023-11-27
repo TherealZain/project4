@@ -61,8 +61,8 @@
                      <children>
                          <Label text="Sauce" />
                          <TextField fx:id="sauceDisplay" editable="false"/>
-                         <CheckBox fx:id="extraCheese" onAction="#handleExtraSelect" onMouseClicked="#handleExtraSelect" text="Extra Cheese" />
-                         <CheckBox fx:id="extraSauce" onAction="#handleExtraSelect" onMouseClicked="#handleExtraSelect" text="Extra Sauce" />
+                         <CheckBox fx:id="extraCheese" text="Extra Cheese" />
+                         <CheckBox fx:id="extraSauce"  text="Extra Sauce" />
                      </children>
                   </VBox>
                </children>

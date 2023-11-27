@@ -18,7 +18,6 @@ public class CurrentOrderController {
     @FXML
     private TextField orderNumField,subTotalField, salesTaxField, orderTotalField;
     private Order order;
-
     private StoreOrders storeOrders;
     private static final double SALES_TAX_RATE = 0.06625;
     private MainMenuController mainController = new MainMenuController();

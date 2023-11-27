@@ -88,7 +88,7 @@ public abstract class Pizza {
     public ArrayList<Toppings> getToppings() {
         return toppings;
     }
-
+    public Size getSize(){return size;}
 
     /**
      * Gets the current type of sauce on the pizza.
