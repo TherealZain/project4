@@ -60,9 +60,9 @@
                   <VBox prefHeight="258.0" prefWidth="249.0" spacing="10">
                      <children>
                          <Label text="Sauce" />
-                         <TextField fx:id="sauceDisplay" editable="false"/>
-                         <CheckBox fx:id="extraCheese" text="Extra Cheese" />
-                         <CheckBox fx:id="extraSauce"  text="Extra Sauce" />
+                         <TextField fx:id="sauceDisplay" editable="false" />
+                         <CheckBox fx:id="extraCheese" onAction="#handleExtraSelect" text="Extra Cheese" />
+                         <CheckBox fx:id="extraSauce" onAction="#handleExtraSelect" text="Extra Sauce" />
                      </children>
                   </VBox>
                </children>
@@ -71,7 +71,7 @@
                     <children>
                         <Label text="Price: $" />
                         <TextField fx:id="priceDisplay" editable="false" minWidth="50" prefWidth="100" />
-                        <Button fx:id="addToOrderButton" onAction="#handleAddToOrder" minWidth="70" text="Add to Order" />
+                        <Button fx:id="addToOrderButton" minWidth="70" onAction="#handleAddToOrder" text="Add to Order" />
                     </children>
                 </HBox>
             </children>

@@ -93,9 +93,9 @@ public class CurrentOrderController {
         String salesTaxString = String.format("%.2f", salesTax);
         String totalString = String.format("%.2f", totalCost);
         orderNumField.setText(orderNumString);
-        subTotalField.setText(subTotalString);
-        salesTaxField.setText(salesTaxString);
-        orderTotalField.setText(totalString);
+        subTotalField.setText("$" + subTotalString);
+        salesTaxField.setText("$" + salesTaxString);
+        orderTotalField.setText("$" + totalString);
     }
 
 

@@ -39,10 +39,10 @@ public class Pepperoni extends Pizza{
     public double price() {
         double price = PEPPERONI_SMALL_PRICE;
         if(size == Size.MEDIUM){
-            return price + Size.MEDIUM.getPriceAdd();
+            price += Size.MEDIUM.getPriceAdd();
         }
         if(size == Size.LARGE){
-            return price + Size.LARGE.getPriceAdd();
+            price += Size.LARGE.getPriceAdd();
         }
         if(extraCheese){
             price++;

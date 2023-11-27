@@ -109,7 +109,6 @@ public class MainMenuController{
             currentOrder.show();
             currentOrderController = loader.getController();
             currentOrderController.setMainController(this);
-            System.out.println(order);
             currentOrderController.setOrder(order);
             currentOrderController.updateOrderDisplay();
         } catch (IOException e) {

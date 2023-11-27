@@ -69,12 +69,12 @@ public class SpecialtyPizzasController {
         specialtyPizzaSelect.setItems(FXCollections.observableArrayList("Deluxe", "Supreme", "Meatzza", "Pepperoni", "Seafood"));
         specialtyPizzaSelect.setOnAction(event -> handleSpecialtySelect());
         sizeToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> handleSizeChange());
+        specialtyPizzaSelect.getSelectionModel().selectFirst();
         extraCheese.setOnAction(event -> handleExtraSelect());
         extraSauce.setOnAction(event -> handleExtraSelect());
-        smallSize.setSelected(true);
-        specialtyPizzaSelect.getSelectionModel().selectFirst();
         Platform.runLater(() -> {
             specialtyPizzaSelect.getSelectionModel().select("Deluxe");
+            smallSize.setSelected(true);
             handleSpecialtySelect();
         });
     }
@@ -188,6 +188,8 @@ public class SpecialtyPizzasController {
         double price = specialtyPizza.price();
         priceDisplay.setText(String.format("%.2f", price));
     }
+
+
 
     /**
      * Handles the selection of extra cheese or extra sauce.

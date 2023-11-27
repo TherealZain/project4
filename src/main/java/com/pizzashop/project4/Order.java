@@ -77,11 +77,6 @@ public class Order {
         return String.format("%.2f", totalCost);
     }
 
-    public void print(){
-        for( Pizza pizza : pizzaOrders){
-            System.out.println(pizza.toString());
-        }
-    }
 
 
 }

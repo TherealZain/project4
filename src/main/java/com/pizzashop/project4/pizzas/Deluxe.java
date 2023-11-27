@@ -25,6 +25,7 @@ public class Deluxe extends Pizza{
      */
     public Deluxe() {
         toppings = new ArrayList<>();
+        this.size = Size.SMALL;
         sauce = Sauce.TOMATO;
         toppings.add(Toppings.SAUSAGE);
         toppings.add(Toppings.PEPPERONI);
