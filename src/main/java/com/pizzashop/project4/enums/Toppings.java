@@ -24,7 +24,7 @@ package com.pizzashop.project4.enums;
  *
  * This enumeration allows for easy expansion to include more toppings as needed.
  *
- * @author Zain Zulfiqar, Nicholas Yim
+ * @author Zain Zulfiqar, Nicholas SPYim
  */
 public enum Toppings {
     SAUSAGE, PEPPERONI, GREENPEPPER,

@@ -136,7 +136,6 @@ public class SpecialtyPizzasController {
         alert.setHeaderText("Order added to Cart");
         alert.setContentText("Order successfully added");
         alert.showAndWait();
-
         resetOrderUI();
     }
 

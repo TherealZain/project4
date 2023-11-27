@@ -26,7 +26,7 @@ public enum Size {
      *
      * @param priceAdd The additional price for the size.
      */
-    private Size(double priceAdd) {
+     Size(double priceAdd) {
         this.priceAdd = priceAdd;
     }
 

@@ -1,6 +1,14 @@
 package com.pizzashop.project4;
 
+import com.pizzashop.project4.pizzas.Pizza;
+
 import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * Manages the collection of orders for a pizza store.
@@ -17,6 +25,7 @@ public class StoreOrders {
     private static StoreOrders instance;
     private ArrayList<Order> storeOrders;
     private static int nextOrderNum;
+    private static final int NOT_FOUND = -1;
 
     /**
      * Constructor for the StoreOrders class.
@@ -58,5 +67,52 @@ public class StoreOrders {
         }
         return false;
     }
+
+    public void export(Stage stage){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export Orders");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                for(Order order : storeOrders){
+                    writer.write("Order #" + order.getOrderNum());
+                    writer.newLine();
+                    for(Pizza pizza : order.getPizzas()){
+                        writer.write(pizza.toString());
+                        writer.newLine();
+                    }
+                    writer.write("------------------------------------------------");
+                    writer.newLine();
+                }
+            } catch (IOException ignored) {
+
+            }
+
+        }
+    }
+
+    public boolean storeOrdersEmpty(){
+        return storeOrders.isEmpty();
+    }
+
+    public boolean removeOrder(Order order){
+        if(order != null){
+            storeOrders.remove(order);
+            return true;
+        } else
+            return false;
+    }
+
+    public Order getOrderById(int id) {
+        for (Order order : storeOrders) {
+            if (order.getOrderNum() == id) {
+                return order;
+            }
+        }
+        return null;
+    }
+
 
 }
