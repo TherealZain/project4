@@ -12,6 +12,8 @@ import static javafx.application.Application.launch;
  * Main application class for the pizza shop application.
  * This class extends {@link javafx.application.Application}
  * and serves as the entry point for the JavaFX application.
+ *
+ *  @author Zain Zulfiqar, Nicholas Yim
  */
 public class Main extends Application{
 
