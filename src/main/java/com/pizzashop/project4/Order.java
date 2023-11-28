@@ -65,6 +65,10 @@ public class Order {
         return false; // Removal failed
     }
 
+    /**
+     * Gets order total with salesTax included
+     * @return order total as String
+     */
     public String getOrderTotal() {
         double subTotal = 0;
         for (Pizza pizza : pizzaOrders) {

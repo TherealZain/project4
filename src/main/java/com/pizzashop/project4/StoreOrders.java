@@ -96,7 +96,6 @@ public class StoreOrders {
 
         }
     }
-
     /**
      * Checks if storeOrders contains any orders
      * @return true if no orders in storeOrders

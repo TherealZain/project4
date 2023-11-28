@@ -21,6 +21,13 @@ import com.pizzashop.project4.pizzas.Pizza;
  * @author Zain Zulfiqar, Nicholas Yim
  */
 public class PizzaMaker {
+
+    /**
+     * Creates new instance of pizza based on pizzaType provided, this is a factory method,
+     * Other controllers use this method to create pizzas
+     * @param pizzaType
+     * @return Pizza type of pizzaType
+     */
     public static Pizza createPizza(String pizzaType) {
         return switch (pizzaType) {
             case "BYO" -> new BuildYourOwn();
