@@ -56,7 +56,7 @@ public class CurrentOrderController {
                 pizzaList.getItems().remove(selectedIndex);
                 calculateTotals(order.getPizzas());
             }
-    }
+        }
     }
 
     @FXML

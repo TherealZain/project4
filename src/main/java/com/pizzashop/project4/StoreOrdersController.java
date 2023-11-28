@@ -34,14 +34,11 @@ public class StoreOrdersController {
         }
         orderSelect.setItems(orderNumbers);
         orderSelect.setOnAction(event -> onComboBoxAction());
-
-
     }
 
     private void onComboBoxAction() {
         String selectedOrder = orderSelect.getSelectionModel().getSelectedItem();
         if (selectedOrder != null) {
-            // Code to handle the selection of an order
             displaySelectedOrder(selectedOrder);
         }
     }
@@ -73,18 +70,29 @@ public class StoreOrdersController {
         }
     }
     @FXML
-    private void handleCancelButton(){
+    private void handleCancelButton() {
         String selectedOrder = orderSelect.getSelectionModel().getSelectedItem();
         int selectedIndex = orderSelect.getSelectionModel().getSelectedIndex();
-        Order order = storeOrders.getOrderById(Integer.parseInt(selectedOrder));
-       if(storeOrders.removeOrder(order)){
-           orderSelect.getItems().remove(selectedIndex);
-           displayNone();
-           Alert alert = new Alert(Alert.AlertType.INFORMATION);
-           alert.setTitle("Success");
-           alert.setHeaderText("Order removed");
-           alert.setContentText("Order # " + order.getOrderNum() + " removed.");
-           alert.showAndWait();
-       }
+        if (selectedOrder != null) {
+            Order order = storeOrders.getOrderById(Integer.parseInt(selectedOrder));
+            if (storeOrders.removeOrder(order)) {
+                orderSelect.getItems().remove(selectedIndex);
+                if (!orderSelect.getItems().isEmpty()) {
+                    if (selectedIndex >= orderSelect.getItems().size()) {
+                        orderSelect.getSelectionModel().selectLast();
+                    } else {
+                        orderSelect.getSelectionModel().select(selectedIndex);
+                    }
+                    onComboBoxAction();
+                } else {
+                    displayNone();
+                }
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText("Order removed");
+                alert.setContentText("Order # " + order.getOrderNum() + " removed.");
+                alert.showAndWait();
+            }
+        }
     }
 }
