@@ -8,9 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
 import java.util.ArrayList;
 
+/**
+ * Controller class for managing the current order in a pizza ordering application.
+ * This class is responsible for handling the user interface related to the current pizza order,
+ * including displaying order details, removing pizzas from the order, and placing the order.
+ * @author Zain Zulfiqar, Nicholas Yim
+ */
 public class CurrentOrderController {
 
     @FXML
@@ -22,18 +27,36 @@ public class CurrentOrderController {
     private static final double SALES_TAX_RATE = 0.06625;
     private MainMenuController mainController = new MainMenuController();
 
+    /**
+     * Initializes the controller, setting up the necessary objects and state.
+     * This method is called after the FXML fields have been injected.
+     */
     public void initialize() {
         storeOrders = StoreOrders.getInstance();
     }
 
+    /**
+     * Sets the main controller.
+     *
+     * @param controller The main menu controller to be used.
+     */
     public void setMainController(MainMenuController controller) {
         mainController = controller;
     }
 
+    /**
+     * Sets the current order.
+     *
+     * @param order The order object to be managed by this controller.
+     */
     public void setOrder(Order order) {
         this.order = order;
     }
 
+    /**
+     * Updates the display of the current order.
+     * This includes displaying the pizzas in the order and calculating the total costs.
+     */
     public void updateOrderDisplay() {
         ObservableList<String> orderItems = FXCollections.observableArrayList();
         if (order != null) {
@@ -48,6 +71,10 @@ public class CurrentOrderController {
         calculateTotals(order.getPizzas());
     }
 
+    /**
+     * Handles the event of removing a pizza from the current order.
+     * This is typically triggered by a user action in the UI.
+     */
     @FXML
     public void handleRemovePizza(){
         int selectedIndex = pizzaList.getSelectionModel().getSelectedIndex();
@@ -60,6 +87,11 @@ public class CurrentOrderController {
     }
     }
 
+    /**
+     * Handles placing the current order.
+     * This method attempts to add the order to the
+     * store orders and shows an alert based on the success of the operation.
+     */
     @FXML
     public void handlePlaceOrder(){
         if(storeOrders.addOrder(order)) {
@@ -79,6 +111,12 @@ public class CurrentOrderController {
         }
     }
 
+    /**
+     * Calculates the subtotal, sales tax, and total cost
+     * of the current order and updates the UI fields accordingly.
+     *
+     * @param pizzaItems The list of pizzas in the current order.
+     */
     public void calculateTotals(ArrayList<Pizza> pizzaItems){
         double subTotal = 0;
         for(Pizza pizza : pizzaItems){

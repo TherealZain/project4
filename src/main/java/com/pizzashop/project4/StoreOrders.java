@@ -68,6 +68,10 @@ public class StoreOrders {
         return false;
     }
 
+    /**
+     * exports all orders in to a test file for employee use
+     * @param stage where FileChooser will open
+     */
     public void export(Stage stage){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export Orders");
@@ -93,10 +97,19 @@ public class StoreOrders {
         }
     }
 
+    /**
+     * Checks if storeOrders contains any orders
+     * @return true if no orders in storeOrders
+     */
     public boolean storeOrdersEmpty(){
         return storeOrders.isEmpty();
     }
 
+    /**
+     * Removes order from arrayList
+     * @param order to be removed
+     * @return true if order found and can be removed
+     */
     public boolean removeOrder(Order order){
         if(order != null){
             storeOrders.remove(order);
@@ -105,6 +118,11 @@ public class StoreOrders {
             return false;
     }
 
+    /**
+     * Gets order by order number
+     * @param id of order
+     * @return order associated with ID
+     */
     public Order getOrderById(int id) {
         for (Order order : storeOrders) {
             if (order.getOrderNum() == id) {
